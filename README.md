@@ -39,9 +39,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
 
-
-
-
 📦 COMANDOS DOCKER ESSENCIAIS - DESENVOLVIMENTO NEXT.JS COM NODE.JS
 
 🔧 1. Build da imagem
@@ -52,9 +49,9 @@ docker run -d -p 3000:3000 --name nome-do-container nome-da-imagem
 
 💾 3. Usar volumes para hot reload
 docker run -d -p 3000:3000 \\
-  -v $(pwd):/app \\
-  -v /app/node_modules \\
-  --name nome-do-container nome-da-imagem
+-v $(pwd):/app \\
+-v /app/node_modules \\
+--name nome-do-container nome-da-imagem
 
 📂 4. Entrar no container (modo interativo)
 docker exec -it nome-do-container sh
@@ -67,12 +64,13 @@ docker-compose down
 docker system prune -a
 
 📜 7. Listar containers e imagens
-docker ps        # containers em execução
-docker ps -a     # todos os containers (inclusive parados)
-docker images    # lista de imagens Docker
+docker ps # containers em execução
+docker ps -a # todos os containers (inclusive parados)
+docker images # lista de imagens Docker
 
 🧪 8. Rodar comandos diretamente (ex: npm install)
 docker run -it --rm nome-da-imagem npm install
+docker exec -it portfolio sh
 
 🔁 9. Restartar container existente
 docker restart nome-do-container
@@ -80,3 +78,9 @@ docker restart nome-do-container
 🧱 10. Remover container/imagem
 docker rm nome-do-container
 docker rmi nome-da-imagem
+
+sudo chown -R $(id -u):$(id -g) .
+
+npm install -D eslint prettier eslint-config-prettier eslint-plugin-prettier \
+ eslint-plugin-react eslint-plugin-react-hooks \
+ @typescript-eslint/eslint-plugin @typescript-eslint/parser
