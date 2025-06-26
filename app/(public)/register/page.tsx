@@ -3,6 +3,7 @@ import RegisterForm from './RegisterPageClient';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { Metadata } from 'next';
 
 export const metadata = {
     title: 'Log Chat - Register',
