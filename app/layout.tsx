@@ -1,7 +1,6 @@
 import '../styles/globals.css';
 import type { ReactNode } from 'react';
-import ReactQueryProvider from '../components/ReactQueryProvider';
-import { SessionProvider } from 'next-auth/react';
+import Providers from '../components/Providers';
 
 interface RootLayoutProps {
     children: ReactNode;
@@ -11,9 +10,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="pt-BR">
             <body>
-                <SessionProvider>
-                    <ReactQueryProvider>{children}</ReactQueryProvider>
-                </SessionProvider>
+                <Providers>{children}</Providers>
             </body>
         </html>
     );

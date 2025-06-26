@@ -58,6 +58,7 @@ docker exec -it nome-do-container sh
 
 🔄 5. Rebuild e restart usando Docker Compose
 docker-compose up --build
+
 docker-compose down
 
 🧼 6. Limpeza de imagens e containers
@@ -75,9 +76,14 @@ docker exec -it portfolio sh
 🔁 9. Restartar container existente
 docker restart nome-do-container
 
+
+
 🧱 10. Remover container/imagem
 docker rm nome-do-container
 docker rmi nome-da-imagem
+
+docker compose down --volumes
+docker compose up --build
 
 sudo chown -R $(id -u):$(id -g) .
 

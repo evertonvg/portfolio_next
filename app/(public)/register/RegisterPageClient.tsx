@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Loading from '@/components/Loading';
 
 import { formatPhone } from '@/utils/formatNumber';
 import { getStates } from '@/contents/getStates';
@@ -32,6 +33,7 @@ interface RegisterFormProps {
 
 export default function RegisterForm({ countries }: RegisterFormProps) {
     const [preview, setPreview] = useState<string>(DEFAULT_AVATAR);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const {
         register,
@@ -83,6 +85,7 @@ export default function RegisterForm({ countries }: RegisterFormProps) {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-700 p-4">
+            {loading && <Loading />}
             <Card className="w-full max-w-md shadow-lg mt-20 mb-20">
                 <CardHeader>
                     <CardTitle className="text-2xl text-center">Cadastro</CardTitle>
@@ -102,7 +105,7 @@ export default function RegisterForm({ countries }: RegisterFormProps) {
 
                         {/* CAMPOS DE TEXTO */}
                         {[
-                            ['username', 'Nome completo', 'Digite seu nome completo'],
+                            ['username', 'Usuário', 'Digite seu nome de usuário'],
                             ['email', 'E-mail', 'Digite seu e-mail', 'email'],
                             ['phone', 'Telefone', '(00) 00000-0000'],
                         ].map(([id, label, placeholder, type = 'text']) => (

@@ -2,12 +2,7 @@ import z from 'zod';
 
 export const registerSchema = z
     .object({
-        username: z
-            .string()
-            .min(5, 'O nome deve ter no mínimo 5 caracteres')
-            .refine((val) => val.trim().includes(' '), {
-                message: 'Informe nome e sobrenome',
-            }),
+        username: z.string().min(5, 'O nickname deve ter no mínimo 5 caracteres'),
         email: z.string().email('E-mail inválido'),
         phone: z.string().min(14, 'No mínimo 8 números'),
         profilePic: z.any().optional(),

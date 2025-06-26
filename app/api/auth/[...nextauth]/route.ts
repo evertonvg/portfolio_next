@@ -2,40 +2,34 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const handler = NextAuth({
+export const authOptions = {
     providers: [
         CredentialsProvider({
-            name: 'credentials',
+            name: 'Credentials',
             credentials: {
                 username: { label: 'Usuário', type: 'text' },
                 password: { label: 'Senha', type: 'password' },
             },
             async authorize(credentials) {
-                // Substitua com sua lógica de autenticação real
-                if (credentials?.username === 'admin' && credentials?.password === 'admin123') {
-                    return { id: '1', name: 'Admin', email: 'admin@example.com' };
+                // Aqui você valida as credenciais (exemplo simples):
+                const { username, password } = credentials ?? {};
+
+                // Substitua essa validação pelo seu banco/dados reais
+                if (username === 'admin' && password === '@S3nh4n40s1mpl3s') {
+                    return { id: '1', name: 'Admin User', email: 'admin@example.com' };
                 }
+                // Se inválido, retorna null
                 return null;
             },
         }),
     ],
-    pages: {
-        signIn: '/login', // sua tela de login
-    },
     session: {
-        strategy: 'jwt',
+        strategy: 'jwt' as const,
     },
-    callbacks: {
-        async jwt({ token, user }) {
-            if (user) token.user = user;
-            return token;
-        },
-        async session({ session, token }) {
-            session.user = token.user as typeof session.user;
-            return session;
-        },
+    pages: {
+        signIn: '/login', // Pode configurar para a rota da sua página de login
     },
-    secret: process.env.NEXTAUTH_SECRET,
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
