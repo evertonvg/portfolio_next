@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'phosphor-react';
 
 export default function ThemeToggleProvider() {

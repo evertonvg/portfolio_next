@@ -76,8 +76,6 @@ docker exec -it portfolio sh
 🔁 9. Restartar container existente
 docker restart nome-do-container
 
-
-
 🧱 10. Remover container/imagem
 docker rm nome-do-container
 docker rmi nome-da-imagem
