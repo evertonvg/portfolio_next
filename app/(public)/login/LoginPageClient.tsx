@@ -39,7 +39,7 @@ export default function LoginPageClient() {
 
         const result = await signIn('credentials', {
             redirect: false,
-            username: data.username,
+            emailOrName: data.username,
             password: data.password,
         });
 
