@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
               name: user.name,
               email: user.email,
               image: user.image,
-              token, // passamos o token aqui para usar no JWT
+              token, // será incluído no JWT
             };
           }
 
@@ -48,23 +48,26 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.name = user.name;
-        token.email = user.email;
-        token.image = user.image;
-        token.accessToken = user.token; // salvar token da API
+        token.id = user.id?.toString() ?? '';
+        token.name = user.name ?? '';
+        token.email = user.email ?? '';
+        token.image = user.image ?? undefined;
+        token.accessToken = user.token ?? '';
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
+        // Sobrescreve o session.user com os dados do token
         session.user = {
           id: token.id as string,
           name: token.name as string,
           email: token.email as string,
           image: token.image as string,
         };
-        session.accessToken = token.accessToken as string;
+
+        // Adiciona accessToken na sessão
+        (session as any).accessToken = token.accessToken;
       }
       return session;
     },

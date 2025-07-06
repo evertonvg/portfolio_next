@@ -57,7 +57,7 @@ export default function LoginPageClient() {
 
             setTimeout(() => {
                 router.push('/dashboard');
-            }, 1500);
+            }, 10);
         }
 
         setLoading(false);

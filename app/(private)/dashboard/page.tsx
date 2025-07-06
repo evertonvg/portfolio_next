@@ -2,6 +2,9 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import DashboardPageClient from './dashboardPageClient';
+import { getUsers } from '@/contents/getUsers';
+import type { UserProps } from './dashboardPageClient';
+
 
 export const metadata = {
     title: 'Log Chat - Dashboard',
@@ -60,10 +63,14 @@ export const metadata = {
 
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
+    const token = session?.accessToken;
 
     if (!session) {
         redirect('/login');
     }
 
-    return <DashboardPageClient />;
+    const users:UserProps[] = await getUsers(token || '');
+    console.warn(users)
+
+    return <DashboardPageClient users={users} />;
 }
